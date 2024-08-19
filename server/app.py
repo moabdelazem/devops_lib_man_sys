@@ -42,5 +42,17 @@ def add_book():
     return make_response(jsonify(new_book), 201)
 
 
+# Route to remove a book
+@app.route("/api/books/<int:book_id>", methods=["DELETE"])
+def remove_book(book_id):
+    books = load_books()
+    for book in books:
+        if book["id"] == book_id:
+            books.remove(book)
+            save_books(books)
+            return jsonify({"message": "Book removed successfully"})
+    return jsonify({"message": "Book not found"}), 404
+
+
 if __name__ == "__main__":
     app.run(debug=True)

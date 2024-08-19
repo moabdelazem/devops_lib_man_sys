@@ -30,6 +30,24 @@ function App() {
     }
   };
 
+  const deleteBook = async (bookId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/books/${bookId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        setBooks(books.filter((book) => book.id !== bookId));
+      } else {
+        console.error("Failed to delete book");
+      }
+    } catch (error) {
+      console.error("Error deleting book:", error);
+    }
+  };
+
   const fetchData = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/books");
@@ -46,9 +64,9 @@ function App() {
         <header className="py-2 px-2">
           <h1 className="text-xl font-semibold">Library Management System</h1>
         </header>
-        <main>
+        <main className="space-y-8">
           <AddNewBooks addBook={addBook} />
-          <BooksList booksData={books} />
+          <BooksList booksData={books} deleteBook={deleteBook} />
         </main>
       </div>
     </>

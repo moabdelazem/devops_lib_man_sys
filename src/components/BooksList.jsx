@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BooksList = ({ booksData }) => {
+export const BooksList = ({ booksData, deleteBook }) => {
   return (
     <>
       <h1 className="my-4 text-xl font-semibold">Available Books</h1>
@@ -9,6 +9,7 @@ export const BooksList = ({ booksData }) => {
           <div
             key={book.id}
             className="bg-white shadow-md rounded-lg p-4 cursor-pointer hover:bg-gray-100"
+            onClick={() => deleteBook(book.id)}
           >
             <h2 className="text-xl font-semibold text-gray-800">
               {book.title}
