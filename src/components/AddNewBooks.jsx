@@ -5,6 +5,7 @@ export const AddNewBooks = ({ addBook }) => {
   const [author, setAuthor] = useState("");
   const [year, setYear] = useState("");
   const [genre, setGenre] = useState("");
+  const [isBorrowed, setIsBorrowed] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +16,7 @@ export const AddNewBooks = ({ addBook }) => {
         author,
         year: parseInt(year, 10), // Convert year to integer
         genre,
+        isBorrowed: isBorrowed,
       };
       console.log(newBook);
       addBook(newBook);

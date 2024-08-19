@@ -2,12 +2,14 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { BooksList } from "./components/BooksList";
 import { AddNewBooks } from "./components/AddNewBooks";
+import BorrowedBooks from "./components/BorrowedBooks";
 
 function App() {
   const [books, setBooks] = useState([]);
+  const [borrowedBooks, setBorrowedBooks] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    fetchBooks();
   }, []);
 
   const addBook = async (newBook) => {
@@ -30,6 +32,33 @@ function App() {
     }
   };
 
+  const borrowBook = async (bookId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/books/borrow/${bookId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json", // Ensure the response is JSON
+            "Access-Control-Allow-Origin": "*", // Add CORS header
+          },
+        }
+      );
+      if (response.ok) {
+        const updatedBook = await response.json();
+        setBooks(
+          books.map((book) => (book.id === bookId ? updatedBook : book))
+        );
+        setBorrowedBooks([...borrowedBooks, updatedBook]);
+      } else {
+        console.error("Failed to borrow book");
+      }
+    } catch (error) {
+      console.error("Error borrowing book:", error);
+    }
+  };
+
   const deleteBook = async (bookId) => {
     try {
       const response = await fetch(
@@ -48,11 +77,41 @@ function App() {
     }
   };
 
-  const fetchData = async () => {
+  const returnBook = async (bookId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/books/return/${bookId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json", // Ensure the response is JSON
+            "Access-Control-Allow-Origin": "*", // Add CORS header
+          },
+        }
+      );
+      if (response.ok) {
+        const updatedBook = await response.json();
+        setBooks(
+          books.map((book) => (book.id === bookId ? updatedBook : book))
+        );
+        setBorrowedBooks(borrowedBooks.filter((book) => book.id !== bookId));
+      } else {
+        console.error("Failed to return book");
+      }
+    } catch (error) {
+      console.error("Error returning book:", error);
+    }
+  };
+
+  const fetchBooks = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/books");
       const data = await response.json();
       setBooks(data);
+      // Filter borrowed books from the fetched data, if you have a way to determine this
+      const borrowed = data.filter((book) => book.isBorrowed); // Example filter condition
+      setBorrowedBooks(borrowed);
     } catch (error) {
       console.error("Error fetching books:", error);
     }
@@ -66,7 +125,15 @@ function App() {
         </header>
         <main className="space-y-8">
           <AddNewBooks addBook={addBook} />
-          <BooksList booksData={books} deleteBook={deleteBook} />
+          <BooksList
+            booksData={books}
+            deleteBook={deleteBook}
+            borrowBook={borrowBook}
+          />
+          <BorrowedBooks
+            borrowedBooks={borrowedBooks}
+            returnBook={returnBook}
+          />
         </main>
       </div>
     </>
