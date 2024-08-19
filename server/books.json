@@ -48,14 +48,6 @@
         "isBorrowed": false
     },
     {
-        "id": 11,
-        "title": "Brave New World",
-        "author": "Aldous Huxley",
-        "year": 1932,
-        "genre": "Dystopian",
-        "isBorrowed": false
-    },
-    {
         "id": 12,
         "title": "Crime and Punishment",
         "author": "Fyodor Dostoevsky",
@@ -93,7 +85,7 @@
         "author": "Homer",
         "year": "8th Century BC",
         "genre": "Epic",
-        "isBorrowed": false
+        "isBorrowed": true
     },
     {
         "id": 17,
@@ -139,7 +131,7 @@
         "author": "Alexandre Dumas",
         "year": 1844,
         "genre": "Adventure",
-        "isBorrowed": true
+        "isBorrowed": false
     },
     {
         "id": 23,
@@ -174,7 +166,8 @@
         "title": "The Old Man and the Sea",
         "author": "Ernest Hemingway",
         "year": 1952,
-        "genre": "Fiction"
+        "genre": "Fiction",
+        "isBorrowed": true
     },
     {
         "id": 28,
@@ -195,13 +188,14 @@
         "title": "Memorise",
         "author": "Dystovski",
         "year": 2000,
-        "genre": "Art"
+        "genre": "Art",
+        "isBorrowed": false
     },
     {
-        "id": 33,
-        "title": "Example",
+        "id": 32,
+        "title": "Examplee",
         "author": "Author",
-        "year": 1800,
+        "year": 2000,
         "genre": "Fiction",
         "isBorrowed": false
     }

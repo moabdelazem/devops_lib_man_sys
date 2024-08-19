@@ -120,16 +120,19 @@ function App() {
   return (
     <>
       <div>
-        <header className="py-2 px-2">
-          <h1 className="text-xl font-semibold">Library Management System</h1>
-        </header>
+        <header className="py-12 px-8 shadow my-4 rounded-xl">
+          <h1 className="text-5xl font-semibold">Library Management System</h1>{" "}
+        </header>{" "}
         <main className="space-y-8">
+          {" "}
           <AddNewBooks addBook={addBook} />
+          <hr />
           <BooksList
             booksData={books}
             deleteBook={deleteBook}
             borrowBook={borrowBook}
           />
+          <hr />
           <BorrowedBooks
             borrowedBooks={borrowedBooks}
             returnBook={returnBook}

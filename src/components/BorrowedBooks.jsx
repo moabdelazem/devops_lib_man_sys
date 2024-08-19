@@ -19,7 +19,7 @@ const BorrowedBooks = ({ borrowedBooks, returnBook }) => {
               <p className="text-gray-700">Genre: {book.genre}</p>
               <button
                 onClick={() => returnBook(book.id)}
-                className="py-2.5 px-2 border font-semibold rounded-xl my-4"
+                className="my-4 transition-all text-red-500 border border-red-300 hover:text-white hover:bg-red-700  font-bold py-2 px-4 rounded"
               >
                 Retun Book
               </button>

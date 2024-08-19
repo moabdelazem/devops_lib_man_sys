@@ -12,7 +12,7 @@ export const BooksList = ({ booksData, deleteBook, borrowBook }) => {
               book.isBorrowed
                 ? "bg-stone-100"
                 : "bg-white hover:bg-gray-100 cursor-pointer"
-            } shadow-md rounded-lg p-4  `}
+            } shadow-md rounded-lg p-8  `}
           >
             <h2 className="text-xl font-semibold text-gray-800">
               {book.title}
@@ -23,16 +23,16 @@ export const BooksList = ({ booksData, deleteBook, borrowBook }) => {
             <p className="text-gray-500 text-sm">
               Status: {book.isBorrowed ? "Borrowed" : "Available"}
             </p>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between mt-4 gap-4">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="transition-all text-blue-500 border border-blue-300 hover:text-white hover:bg-blue-700  font-bold py-2 px-4 rounded"
                 onClick={() => deleteBook(book.id)}
                 disabled={book.isBorrowed ? true : false}
               >
                 Delete
               </button>
               <button
-                className="border font-bold py-2 px-4 rounded"
+                className="transition-all border font-bold py-2 px-4 rounded bg-stone-100 hover:bg-stone-500 hover:text-white transtion-all"
                 onClick={() => borrowBook(book.id)}
                 disabled={book.isBorrowed ? true : false}
               >
