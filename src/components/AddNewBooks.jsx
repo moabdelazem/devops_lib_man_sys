@@ -6,25 +6,30 @@ export const AddNewBooks = ({ addBook }) => {
   const [year, setYear] = useState("");
   const [genre, setGenre] = useState("");
   const [isBorrowed, setIsBorrowed] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title && author && year && genre) {
-      const newBook = {
-        id: Date.now(), // Generate a unique ID based on timestamp
-        title,
-        author,
-        year: parseInt(year, 10), // Convert year to integer
-        genre,
-        isBorrowed: isBorrowed,
-      };
-      console.log(newBook);
-      addBook(newBook);
-      setTitle("");
-      setAuthor("");
-      setYear("");
-      setGenre("");
+    if (title.trim() === "" || author.trim() === "" || year.trim() === "" || genre.trim() === "") {
+      setError("Please fill in all fields");
+      return;
     }
+
+    const newBook = {
+      id: Date.now(),
+      title,
+      author,
+      year: parseInt(year, 10),
+      genre,
+      isBorrowed: isBorrowed,
+    };
+    console.log(newBook);
+    addBook(newBook);
+    setTitle("");
+    setAuthor("");
+    setYear("");
+    setGenre("");
+    setError("");
   };
 
   return (
@@ -33,6 +38,7 @@ export const AddNewBooks = ({ addBook }) => {
       className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md"
     >
       <h2 className="text-2xl font-bold mb-4">Add New Book</h2>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
       <div className="mb-4">
         <label
           htmlFor="title"

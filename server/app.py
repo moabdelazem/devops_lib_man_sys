@@ -10,7 +10,6 @@ CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
 # Path to your JSON file
 BOOKS_FILE = "books.json"
 
-
 # Helper function to load books from the JSON file
 def load_books():
     """Load books from a file.
@@ -92,7 +91,6 @@ def remove_book(book_id):
             save_books(books)
             return jsonify({"message": "Book removed successfully"})
     return jsonify({"message": "Book not found"}), 404
-
 
 # Route to search for a book by ID
 @app.route("/api/books/search", methods=["GET"])

@@ -43,7 +43,7 @@ export const BooksList = ({ booksData, deleteBook, borrowBook }) => {
                 <div className="text-sm text-gray-900">{book.genre}</div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <div className="text-sm text-gray-900">
+                <div className={`text-sm ${book.isBorrowed ? "text-red-500" : "text-green-500"}`}>
                   {book.isBorrowed ? "Borrowed" : "Available"}
                 </div>
               </td>
