@@ -93,7 +93,7 @@
         "author": "Homer",
         "year": "8th Century BC",
         "genre": "Epic",
-        "isBorrowed": false
+        "isBorrowed": true
     },
     {
         "id": 18,
@@ -181,7 +181,8 @@
         "title": "Heart of Darkness",
         "author": "Joseph Conrad",
         "year": 1899,
-        "genre": "Novella"
+        "genre": "Novella",
+        "isBorrowed": true
     },
     {
         "id": 31,
